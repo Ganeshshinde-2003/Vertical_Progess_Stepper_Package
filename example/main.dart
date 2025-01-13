@@ -17,9 +17,7 @@ void main() {
         ],
         activeColor: Colors.blue,
         inactiveColor: Colors.grey,
-        onStepTapped: (index) {
-          print("Tapped on step: $index");
-        },
+        onStepTapped: (index) {},
       ),
     ),
   ));
