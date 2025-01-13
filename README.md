@@ -1,39 +1,85 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Vertical Progress Stepper
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+A customizable vertical progress stepper widget for Flutter. This package provides an easy-to-use vertical stepper UI that can be used in any Flutter project. It allows you to display a step-by-step process where users can see their progress in a vertical layout.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- **Customizable Steps**: You can define any number of steps for your process.
+- **Interactive Steps**: Users can tap to navigate through steps.
+- **Custom Colors**: Customize active and inactive step colors.
+- **Flexible Content**: Support for custom content for each step.
+- **Optional Animation**: Option to add an animation for the step transitions.
 
-## Getting started
+## Installation
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Add the following to your `pubspec.yaml` file:
 
-## Usage
+```yaml
+dependencies:
+  vertical_progress_stepper:
+    git:
+      url: https://github.com/Ganeshshinde-2003/Vertical_Progess_Stepper_Package
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+# Example
 
-```dart
-const like = 'sample';
+The package allows you to easily integrate the `VerticalProgressStepper` widget into your app. Here is an example of how to use it:
+
 ```
+dart
+import 'package:flutter/material.dart';
+import 'package:vertical_progress_stepper/vertical_progress_stepper.dart';
 
-## Additional information
+void main() {
+  runApp(const MaterialApp(home: VerticalProgressStepperMain()));
+}
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+class VerticalProgressStepperMain extends StatefulWidget {
+  const VerticalProgressStepperMain({super.key});
+
+  @override
+  State<VerticalProgressStepperMain> createState() =>
+      _VerticalProgressStepperMainState();
+}
+
+class _VerticalProgressStepperMainState
+    extends State<VerticalProgressStepperMain> {
+  int currentStep = 2; // Set this to any number to make it active
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text("Custom Vertical Progress Stepper")),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: VerticalProgressStepper(
+          currentStep: currentStep,
+          steps: const [
+            "Submit Lab Test",
+            "Processing Lab Test",
+            "Clinician Review",
+            "Holistic Coach Review",
+            "Results Ready",
+          ],
+          stepContent: const [
+            Text("Please upload your lab test file or image to begin the analysis process."),
+            Text("Our medical team will start analyzing your results once your lab test is submitted."),
+            Text.rich(TextSpan(text: "After analysis, ", children: [
+              TextSpan(text: "a clinician", style: TextStyle(fontWeight: FontWeight.bold)),
+              TextSpan(text: " will review your results within 1 week."),
+            ])),
+            Text("Following the clinician review, your holistic coach will provide personalized recommendations."),
+            Icon(Icons.check_circle, color: Colors.green, size: 32),
+          ],
+          activeColor: Colors.deepPurple,
+          inactiveColor: Colors.grey,
+          onStepTapped: (index) {
+            setState(() {
+              currentStep = index;
+            });
+          },
+        ),
+      ),
+    );
+  }
+}
+```
