@@ -16,9 +16,7 @@ Add the following to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  vertical_progress_stepper:
-    git:
-      url: https://github.com/Ganeshshinde-2003/Vertical_Progess_Stepper_Package
+  vertical_progress_stepper: ^0.0.1
 
 # Example
 
