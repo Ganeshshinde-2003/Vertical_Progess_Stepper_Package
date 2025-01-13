@@ -24,7 +24,6 @@ dependencies:
 
 The package allows you to easily integrate the `VerticalProgressStepper` widget into your app. Here is an example of how to use it:
 
-```
 dart
 import 'package:flutter/material.dart';
 import 'package:vertical_progress_stepper/vertical_progress_stepper.dart';
