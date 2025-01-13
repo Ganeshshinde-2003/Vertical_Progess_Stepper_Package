@@ -1,8 +1,8 @@
 name: vertical_progress_stepper
 description: "A customizable vertical progress stepper widget for Flutter."
 version: 0.0.1
-homepage:
-repository: "https://github.com/yourusername/vertical_progress_stepper"
+homepage: "https://github.com/Ganeshshinde-2003/Vertical_Progess_Stepper_Package"
+repository: "https://github.com/Ganeshshinde-2003/Vertical_Progess_Stepper_Package"
 
 environment:
   sdk: '>=3.4.3 <4.0.0'
