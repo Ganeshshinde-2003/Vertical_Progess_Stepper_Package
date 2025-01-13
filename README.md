@@ -82,3 +82,15 @@ class _VerticalProgressStepperMainState
   }
 }
 ```
+
+## How It Works
+
+- **Steps**: Each step is defined in the `steps` list.
+- **Step Content**: Custom content for each step can be passed in the `stepContent` list.
+- **Current Step**: The `currentStep` variable keeps track of the active step and controls the display.
+- **Active & Inactive Colors**: You can customize the colors for active and inactive steps.
+- **Step Navigation**: The `onStepTapped` callback allows users to change steps by tapping on them.
+
+## Contribution
+
+Feel free to fork, modify, and contribute to the package. Open issues for bug reports and feature requests.
