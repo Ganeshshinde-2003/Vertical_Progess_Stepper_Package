@@ -1,15 +1,60 @@
 import 'package:flutter/material.dart';
 
+/// A customizable vertical progress stepper widget for Flutter.
+///
+/// This widget displays a series of steps with customizable content and a
+/// progress indicator. It supports dynamic step navigation, color customization,
+/// and animation duration control.
 class VerticalProgressStepper extends StatelessWidget {
+  /// The current active step index.
+  ///
+  /// This is the index of the step that is currently active.
   final int currentStep;
-  final List<String> steps;
-  final List<Widget> stepContent;
-  final Color activeColor;
-  final Color inactiveColor;
-  final double spacing;
-  final ValueChanged<int>? onStepTapped;
-  final Duration? animationDuration; // Optional animation duration
 
+  /// The list of step titles to be displayed.
+  ///
+  /// Each string in this list represents the title of a step.
+  final List<String> steps;
+
+  /// The content for each step.
+  ///
+  /// A list of widgets, each representing the content of the corresponding step.
+  final List<Widget> stepContent;
+
+  /// The color of the active step's circle and text.
+  ///
+  /// This color is applied to the step circle and text for active steps.
+  final Color activeColor;
+
+  /// The color of the inactive step's circle and text.
+  ///
+  /// This color is applied to the step circle and text for inactive steps.
+  final Color inactiveColor;
+
+  /// The spacing between steps.
+  ///
+  /// This defines the vertical space between each step in the stepper.
+  final double spacing;
+
+  /// Callback function when a step is tapped.
+  ///
+  /// This function is called when a user taps on a step, passing the index of the
+  /// tapped step as an argument. It allows for dynamic step navigation.
+  final ValueChanged<int>? onStepTapped;
+
+  /// Optional animation duration for step transitions.
+  ///
+  /// This controls the duration of the animation for step transitions.
+  /// If not provided, the default duration is used.
+  final Duration? animationDuration;
+
+  /// Creates a [VerticalProgressStepper] widget.
+  ///
+  /// The [currentStep] parameter determines the active step, and the [steps]
+  /// and [stepContent] lists define the step titles and corresponding content.
+  /// [activeColor] and [inactiveColor] control the color of the steps, while
+  /// [spacing] defines the space between each step. [onStepTapped] allows dynamic
+  /// step navigation, and [animationDuration] controls step transition animations.
   const VerticalProgressStepper({
     super.key,
     required this.currentStep,
@@ -19,7 +64,7 @@ class VerticalProgressStepper extends StatelessWidget {
     this.inactiveColor = Colors.grey,
     this.spacing = 16.0,
     this.onStepTapped,
-    this.animationDuration, // Make it optional for better control
+    this.animationDuration,
   });
 
   @override
@@ -63,6 +108,11 @@ class VerticalProgressStepper extends StatelessWidget {
     );
   }
 
+  /// Builds the step circle for the given [stepIndex].
+  ///
+  /// This method returns a circle widget that visually represents the completion
+  /// status of a step. It is filled with [activeColor] if the step is completed,
+  /// or [inactiveColor] if the step is pending.
   Widget _buildStepCircle(int stepIndex) {
     return CircleAvatar(
       radius: 12,
@@ -75,6 +125,10 @@ class VerticalProgressStepper extends StatelessWidget {
     );
   }
 
+  /// Builds the text for the step at the given [stepIndex].
+  ///
+  /// This method returns a [Text] widget displaying the title of the step. The
+  /// text color is determined by whether the step is active or inactive.
   Widget _buildStepText(int stepIndex) {
     return Text(
       steps[stepIndex],
@@ -86,6 +140,10 @@ class VerticalProgressStepper extends StatelessWidget {
     );
   }
 
+  /// Builds the line connecting steps at the given [stepIndex].
+  ///
+  /// This method returns an animated vertical line that connects each step.
+  /// The line's height is determined based on the completion status of the step.
   Widget _buildStepLine(int stepIndex) {
     const double lineHeight = 60.0;
     final double progress = stepIndex < currentStep
